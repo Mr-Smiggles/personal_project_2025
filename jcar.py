@@ -62,22 +62,32 @@ def main():
         #get left joystick raw x and y values
         leftstickX = controller.get_axis(0) * 100  # gets left joystick x-axis
         leftstickY = controller.get_axis(1) * -100  # gets left joystick y-axis
-        rightTrigger = controller.get_axis(5) * 100
-        leftTrigger = controller.get_axis(4) * 100
+        rightStickX = controller.get_axis(3) * 100
+        rightStickY = controller.get_axis(4) * 100
 
 
         #applies controller deadzone
         if leftstickX >= 5 or leftstickX <= -5:
-            x = leftstickX
+            lx = leftstickX
         else:
-            x = 0
+            lx = 0
 
         if leftstickY >= 5 or leftstickY <= -5:
-            y = leftstickY
+            ly = leftstickY
         else:
-            y = 0
+            ly = 0
         
-        print(x, y, leftTrigger, rightTrigger)
+        if rightStickX >= 5 or rightStickX <= -5:
+            rx = rightStickX
+        else:
+            rx = 0
+
+        if rightStickY >= 5 or rightStickY <= -5:
+            ry = rightStickY
+        else:
+            ry = 0
+
+        print(lx, ly, rx, ry)
 
 
         if y >= 0:
@@ -90,14 +100,14 @@ def main():
             p1.ChangeDutyCycle(-y)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(-y)#Set the P2 pulse signal duty cycle to y joystick% 
 
-        if rightTrigger > 0:
+        if rightStickX > 0:
             rotateRight()
-            p1.ChangeDutyCycle(rightTrigger)
-            p2.ChangeDutyCycle(rightTrigger)
-        elif leftTrigger > 0:
+            p1.ChangeDutyCycle(rightStickX)
+            p2.ChangeDutyCycle(rightStickX)
+        elif rightStickY > 0:
             rotateLeft()
-            p1.ChangeDutyCycle(leftTrigger)
-            p2.ChangeDutyCycle(leftTrigger)
+            p1.ChangeDutyCycle(rightStickY)
+            p2.ChangeDutyCycle(rightStickY)
 
 
 
