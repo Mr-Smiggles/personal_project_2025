@@ -63,7 +63,7 @@ def main():
         leftstickX = controller.get_axis(0) * 100  # gets left joystick x-axis
         leftstickY = controller.get_axis(1) * -100  # gets left joystick y-axis
         rightStickX = controller.get_axis(3) * 100
-        rightStickY = controller.get_axis(4) * 100
+        rightStickY = controller.get_axis(4) * -100
 
 
         #applies controller deadzone
@@ -90,10 +90,10 @@ def main():
         print(lx, ly, rx, ry)
 
 
-        if ly >= 0:
+        if ly >= 0 or rx == 0:
             goFoward()
             p1.ChangeDutyCycle(ly)#Set the P1 pulse signal duty cycle to the value of y joystick%
-            p2.ChangeDutyCycle(y)#Set the P2 pulse signal duty cycle to y joystick% 
+            p2.ChangeDutyCycle(ly)#Set the P2 pulse signal duty cycle to y joystick% 
         
         elif ly < 0:
             goBackward()
@@ -104,10 +104,10 @@ def main():
             rotateRight()
             p1.ChangeDutyCycle(rx)
             p2.ChangeDutyCycle(rx)
-        elif rightStickY > 0:
+        elif rx < 0:
             rotateLeft()
-            p1.ChangeDutyCycle(ry)
-            p2.ChangeDutyCycle(ry)
+            p1.ChangeDutyCycle(-rx)
+            p2.ChangeDutyCycle(-rx)
 
 
 
@@ -158,16 +158,6 @@ p2=GPIO.PWM(NSLEEP2,1000)#Define p2 as a pulse signal of 1000 Hz
 p1.start(30)#P1 defaults to a duty cycle of 30%
 p2.start(30)#P2 defaults to a duty cycle of 30%
 
-#the following code assumes that a negative voltage cannot be applied to spin the motor in the opposite direction
-
-#this if statement should take care of foward and reversal of the motors with the joystick
-
-
-def determineDirection():
-    if y >= 0:
-        goFoward()
-    elif y < 0:
-        goBackward()
 
 #create code loop
 while running:
