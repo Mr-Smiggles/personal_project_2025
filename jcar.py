@@ -60,21 +60,24 @@ def main():
     if controller.get_init():  # Check if the controller is initialized
    
         #get left joystick raw x and y values
-        controllerX = controller.get_axis(0) * 100  # gets left joystick x-axis
-        controllerY = controller.get_axis(1) * -100  # gets left joystick y-axis
+        leftstickX = controller.get_axis(0) * 100  # gets left joystick x-axis
+        leftstoclY = controller.get_axis(1) * -100  # gets left joystick y-axis
+        rightBumper = controller.get_button(5)
+        leftBumper = controller.get_button(4)
+
 
         #applies controller deadzone
-        if controllerX >= 5 or controllerX <= -5:
-            x = controllerX
+        if leftstickX >= 5 or leftstickX <= -5:
+            x = leftstickX
         else:
             x = 0
 
-        if controllerY >= 5 or controllerY <= -5:
-            y = controllerY
+        if leftstoclY >= 5 or leftstoclY <= -5:
+            y = leftstoclY
         else:
             y = 0
         
-        print(x, y)
+        print(x, y, leftBumper, rightBumper)
 
 
         if y >= 0:
@@ -87,14 +90,14 @@ def main():
             p1.ChangeDutyCycle(-y)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(-y)#Set the P2 pulse signal duty cycle to y joystick% 
 
-        if x >= 0:
+        if rightBumper == True:
             rotateRight()
-            p1.ChangeDutyCycle(x)
-            p2.ChangeDutyCycle(x)
-        elif x < 0:
+            p1.ChangeDutyCycle(100)
+            p2.ChangeDutyCycle(100)
+        elif leftBumper < True:
             rotateLeft()
-            p1.ChangeDutyCycle(-x)
-            p2.ChangeDutyCycle(-x)
+            p1.ChangeDutyCycle(-100)
+            p2.ChangeDutyCycle(-100)
 
 
 
