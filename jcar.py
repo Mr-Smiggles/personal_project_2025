@@ -24,16 +24,17 @@ while running:
         controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
 
         #applies controller deadzone
-        if controllerX >= 5 or controllerX <= -5:
-            x = controllerX
-        else:
-            x = 0
+        # if controllerX >= 5 or controllerX <= -5:
+        #     x = controllerX
+        # else:
+        #     x = 0
 
-        if controllerY >= 5 or controllerY <= -5:
-            y = controllerY
-        else:
-            y = 0
-        
+        # if controllerY >= 5 or controllerY <= -5:
+        #     y = controllerY
+        # else:
+        #     y = 0
+        x = controllerX
+        y = controllerY
         print(x, y)
 
 #some of the following code is taken from https://github.com/Cokoino/CKK0018/blob/main/Tutorial/Code/Drive_4_motors_run.py
