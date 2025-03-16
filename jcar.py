@@ -16,12 +16,32 @@ for event in pygame.event.get():
     elif event.type == pygame.QUIT:
         running = False
 
+def goFoward():
+    GPIO.output(AN11,GPIO.LOW)
+    GPIO.output(AN12,GPIO.HIGH)
+    GPIO.output(BN11,GPIO.LOW)
+    GPIO.output(BN12,GPIO.HIGH)
+    GPIO.output(AN21,GPIO.LOW)
+    GPIO.output(AN22,GPIO.HIGH)
+    GPIO.output(BN21,GPIO.LOW)
+    GPIO.output(BN22,GPIO.HIGH)
+
+def goBackward():
+    GPIO.output(AN11,GPIO.HIGH)
+    GPIO.output(AN12,GPIO.LOW)
+    GPIO.output(BN11,GPIO.HIGH)
+    GPIO.output(BN12,GPIO.LOW)
+    GPIO.output(AN21,GPIO.HIGH)
+    GPIO.output(AN22,GPIO.LOW)
+    GPIO.output(BN21,GPIO.HIGH)
+    GPIO.output(BN22,GPIO.LOW)
+
 def getLeftAxes():
     if controller.get_init():  # Check if the controller is initialized
    
         #get left joystick raw x and y values
-        controllerX = controller.get_axis(1) * -100  # gets left joystick x-axis
-        controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
+        controllerX = controller.get_axis(0) * 100  # gets left joystick x-axis
+        controllerY = controller.get_axis(1) * -100  # gets left joystick y-axis
 
         #applies controller deadzone
         if controllerX >= 5 or controllerX <= -5:
@@ -36,16 +56,19 @@ def getLeftAxes():
         
         print(x, y)
 
-        GPIO.output(AN11,GPIO.LOW)
-        GPIO.output(AN12,GPIO.HIGH)
-        GPIO.output(BN11,GPIO.LOW)
-        GPIO.output(BN12,GPIO.HIGH)
-        GPIO.output(AN21,GPIO.LOW)
-        GPIO.output(AN22,GPIO.HIGH)
-        GPIO.output(BN21,GPIO.LOW)
-        GPIO.output(BN22,GPIO.HIGH)
-        p1.ChangeDutyCycle(y)#Set the P1 pulse signal duty cycle to the value of y joystick%
-        p2.ChangeDutyCycle(y)#Set the P2 pulse signal duty cycle to y joystick% 
+
+        if y >= 0:
+            goFoward()
+            p1.ChangeDutyCycle(y)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(y)#Set the P2 pulse signal duty cycle to y joystick% 
+        
+        elif y < 0:
+            goBackward()
+            p1.ChangeDutyCycle(-y)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(-y)#Set the P2 pulse signal duty cycle to y joystick% 
+
+
+
 
 #some of the following code is taken from https://github.com/Cokoino/CKK0018/blob/main/Tutorial/Code/Drive_4_motors_run.py
 
@@ -96,30 +119,6 @@ p2.start(30)#P2 defaults to a duty cycle of 30%
 
 #this if statement should take care of foward and reversal of the motors with the joystick
 
-
-def goFoward():
-    GPIO.output(AN11,GPIO.LOW)
-    GPIO.output(AN12,GPIO.HIGH)
-    GPIO.output(BN11,GPIO.LOW)
-    GPIO.output(BN12,GPIO.HIGH)
-    GPIO.output(AN21,GPIO.LOW)
-    GPIO.output(AN22,GPIO.HIGH)
-    GPIO.output(BN21,GPIO.LOW)
-    GPIO.output(BN22,GPIO.HIGH)
-    p1.ChangeDutyCycle(y)#Set the P1 pulse signal duty cycle to the value of y joystick%
-    p2.ChangeDutyCycle(y)#Set the P2 pulse signal duty cycle to y joystick%
-
-def goBackward():
-    GPIO.output(AN11,GPIO.HIGH)
-    GPIO.output(AN12,GPIO.LOW)
-    GPIO.output(BN11,GPIO.HIGH)
-    GPIO.output(BN12,GPIO.LOW)
-    GPIO.output(AN21,GPIO.HIGH)
-    GPIO.output(AN22,GPIO.LOW)
-    GPIO.output(BN21,GPIO.HIGH)
-    GPIO.output(BN22,GPIO.LOW)
-    p1.ChangeDutyCycle(-y)#Set the P1 pulse signal duty cycle to the value of y joystick%
-    p2.ChangeDutyCycle(-y)#Set the P2 pulse signal duty cycle to y joystick%
 
 def determineDirection():
     if y >= 0:
