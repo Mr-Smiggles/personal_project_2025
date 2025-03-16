@@ -36,7 +36,27 @@ def goBackward():
     GPIO.output(BN21,GPIO.HIGH)
     GPIO.output(BN22,GPIO.LOW)
 
-def getLeftAxes():
+def rotateRight():
+    GPIO.output(AN11,GPIO.LOW)
+    GPIO.output(AN12,GPIO.HIGH)
+    GPIO.output(BN11,GPIO.HIGH)
+    GPIO.output(BN12,GPIO.LOW)
+    GPIO.output(AN21,GPIO.LOW)
+    GPIO.output(AN22,GPIO.HIGH)
+    GPIO.output(BN21,GPIO.HIGH)
+    GPIO.output(BN22,GPIO.LOW)
+
+def rotateLeft():
+    GPIO.output(AN11,GPIO.HIGH)
+    GPIO.output(AN12,GPIO.LOW)
+    GPIO.output(BN11,GPIO.LOW)
+    GPIO.output(BN12,GPIO.HIGH)
+    GPIO.output(AN21,GPIO.HIGH)
+    GPIO.output(AN22,GPIO.LOW)
+    GPIO.output(BN21,GPIO.LOW)
+    GPIO.output(BN22,GPIO.HIGH)
+
+def main():
     if controller.get_init():  # Check if the controller is initialized
    
         #get left joystick raw x and y values
@@ -66,6 +86,16 @@ def getLeftAxes():
             goBackward()
             p1.ChangeDutyCycle(-y)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(-y)#Set the P2 pulse signal duty cycle to y joystick% 
+
+        if x >= 0:
+            rotateRight()
+            p1.ChangeDutyCycle(x)
+            p2.ChangeDutyCycle(x)
+        elif x < 0:
+            rotateLeft()
+            p1.ChangeDutyCycle(-x)
+            p2.ChangeDutyCycle(-x)
+
 
 
 
@@ -126,35 +156,10 @@ def determineDirection():
     elif y < 0:
         goBackward()
 
-    #the follwoing code should spin the left & right motors opposite with the x joystick value
-    if x >= 0:
-        GPIO.output(AN11,GPIO.LOW)
-        GPIO.output(AN12,GPIO.HIGH)
-        GPIO.output(BN11,GPIO.HIGH)
-        GPIO.output(BN12,GPIO.LOW)
-        GPIO.output(AN21,GPIO.LOW)
-        GPIO.output(AN22,GPIO.HIGH)
-        GPIO.output(BN21,GPIO.HIGH)
-        GPIO.output(BN22,GPIO.LOW)
-        p1.ChangeDutyCycle(x)#Set the P1 pulse signal duty cycle to the value of x joystick%
-        p2.ChangeDutyCycle(x)#Set the P2 pulse signal duty cycle to x joystick%
-
-    elif x < 0:
-        GPIO.output(AN11,GPIO.HIGH)
-        GPIO.output(AN12,GPIO.LOW)
-        GPIO.output(BN11,GPIO.LOW)
-        GPIO.output(BN12,GPIO.HIGH)
-        GPIO.output(AN21,GPIO.HIGH)
-        GPIO.output(AN22,GPIO.LOW)
-        GPIO.output(BN21,GPIO.LOW)
-        GPIO.output(BN22,GPIO.HIGH)
-        p1.ChangeDutyCycle(-x)#Set the P1 pulse signal duty cycle to the value of x joystick%
-        p2.ChangeDutyCycle(-x)#Set the P2 pulse signal duty cycle to the value x joystick%
-
 #create code loop
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     
-    getLeftAxes()    
+    main()    
