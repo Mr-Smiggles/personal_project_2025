@@ -22,20 +22,21 @@ if controller.get_init():  # Check if the controller is initialized
     while running:
         controllerX = controller.get_axis(1) * -100  # gets left joystick x-axis
         controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
+        print(controllerX, controllerY)
 
 #applies controller deadzone
-while running:
-    if controllerX >= 5 or controllerX <= -5:
-        x = controllerX
-    else:
-        x = 0
+# while running:
+#     if controllerX >= 5 or controllerX <= -5:
+#         x = controllerX
+#     else:
+#         x = 0
 
-    if controllerY >= 5 or controllerY <= -5:
-        y = controllerY
-    else:
-        y = 0
+#     if controllerY >= 5 or controllerY <= -5:
+#         y = controllerY
+#     else:
+#         y = 0
             
-    print(x, y)    
+#     print(x, y)    
 
         
 #some of the following code is taken from https://github.com/Cokoino/CKK0018/blob/main/Tutorial/Code/Drive_4_motors_run.py
@@ -125,5 +126,5 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    p1.ChangeDutyCycle(y)#Set the P1 pulse signal duty cycle to the value of y joystick%
-    p2.ChangeDutyCycle(y)#Set the P2 pulse signal duty cycle to y joystick%
+    p1.ChangeDutyCycle(controllerX)#Set the P1 pulse signal duty cycle to the value of y joystick%
+    p2.ChangeDutyCycle(controllerX)#Set the P2 pulse signal duty cycle to y joystick%
