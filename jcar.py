@@ -16,25 +16,25 @@ for event in pygame.event.get():
         running = False
 
 #get left joystick raw x and y values
-if controller.get_init():  # Check if the controller is initialized
+while running:
+    if controller.get_init():  # Check if the controller is initialized
    
         #get left joystick raw x and y values
-        while running:
-            controllerX = controller.get_axis(1) * -100  # gets left joystick x-axis
-            controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
+        controllerX = controller.get_axis(1) * -100  # gets left joystick x-axis
+        controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
 
-    #applies controller deadzone
-            if controllerX >= 5 or controllerX <= -5:
-                x = controllerX
-            else:
-                x = 0
+#applies controller deadzone
+        if controllerX >= 5 or controllerX <= -5:
+            x = controllerX
+        else:
+            x = 0
 
-            if controllerY >= 5 or controllerY <= -5:
-                y = controllerY
-            else:
-                y = 0
-            
-            print(x, y)    
+        if controllerY >= 5 or controllerY <= -5:
+            y = controllerY
+        else:
+            y = 0
+        
+        print(x, y)    
 
         
 #some of the following code is taken from https://github.com/Cokoino/CKK0018/blob/main/Tutorial/Code/Drive_4_motors_run.py
