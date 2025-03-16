@@ -16,7 +16,7 @@ for event in pygame.event.get():
     elif event.type == pygame.QUIT:
         running = False
 
-def getLeftAxes():
+while running:
     if controller.get_init():  # Check if the controller is initialized
    
         #get left joystick raw x and y values
@@ -116,30 +116,6 @@ def determineDirection():
     elif y < 0:
         goBackward()
 
-    #the follwoing code should spin the left & right motors opposite with the x joystick value
-    if x >= 0:
-        GPIO.output(AN11,GPIO.LOW)
-        GPIO.output(AN12,GPIO.HIGH)
-        GPIO.output(BN11,GPIO.HIGH)
-        GPIO.output(BN12,GPIO.LOW)
-        GPIO.output(AN21,GPIO.LOW)
-        GPIO.output(AN22,GPIO.HIGH)
-        GPIO.output(BN21,GPIO.HIGH)
-        GPIO.output(BN22,GPIO.LOW)
-        p1.ChangeDutyCycle(x)#Set the P1 pulse signal duty cycle to the value of x joystick%
-        p2.ChangeDutyCycle(x)#Set the P2 pulse signal duty cycle to x joystick%
-
-    elif x < 0:
-        GPIO.output(AN11,GPIO.HIGH)
-        GPIO.output(AN12,GPIO.LOW)
-        GPIO.output(BN11,GPIO.LOW)
-        GPIO.output(BN12,GPIO.HIGH)
-        GPIO.output(AN21,GPIO.HIGH)
-        GPIO.output(AN22,GPIO.LOW)
-        GPIO.output(BN21,GPIO.LOW)
-        GPIO.output(BN22,GPIO.HIGH)
-        p1.ChangeDutyCycle(-x)#Set the P1 pulse signal duty cycle to the value of x joystick%
-        p2.ChangeDutyCycle(-x)#Set the P2 pulse signal duty cycle to the value x joystick%
 
 #create code loop
 while running:
@@ -147,6 +123,5 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    getLeftAxes()
     determineDirection()
     
