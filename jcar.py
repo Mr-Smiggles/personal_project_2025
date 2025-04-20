@@ -37,33 +37,33 @@ def goBackward():
     GPIO.output(BN22,GPIO.LOW)
 
 def rotateRight():
-    GPIO.output(AN11,GPIO.LOW)
-    GPIO.output(AN12,GPIO.HIGH)
+    GPIO.output(AN11,GPIO.HIGH)
+    GPIO.output(AN12,GPIO.LOW)
     GPIO.output(BN11,GPIO.HIGH)
     GPIO.output(BN12,GPIO.LOW)
-    GPIO.output(AN21,GPIO.LOW)
-    GPIO.output(AN22,GPIO.HIGH)
+    GPIO.output(AN21,GPIO.HIGH)
+    GPIO.output(AN22,GPIO.LOW)
     GPIO.output(BN21,GPIO.HIGH)
     GPIO.output(BN22,GPIO.LOW)
 
 def rotateLeft():
-    GPIO.output(AN11,GPIO.HIGH)
-    GPIO.output(AN12,GPIO.LOW)
+    GPIO.output(AN11,GPIO.LOW)
+    GPIO.output(AN12,GPIO.HIGH)
     GPIO.output(BN11,GPIO.LOW)
     GPIO.output(BN12,GPIO.HIGH)
-    GPIO.output(AN21,GPIO.HIGH)
-    GPIO.output(AN22,GPIO.LOW)
+    GPIO.output(AN21,GPIO.LOW)
+    GPIO.output(AN22,GPIO.HIGH)
     GPIO.output(BN21,GPIO.LOW)
     GPIO.output(BN22,GPIO.HIGH)
 
 def main():
     if controller.get_init():  # Check if the controller is initialized
    
-        #get left joystick raw x and y values
+        #get left joystick raw x and y values and trigger values
         leftstickX = controller.get_axis(0) * 100  # gets left joystick x-axis
         leftstickY = controller.get_axis(1) * -100  # gets left joystick y-axis
-        rightStickX = controller.get_axis(3) * 100
-        rightStickY = controller.get_axis(4) * -100
+        leftTrigger = controller.get_axis(2)
+        rightTrigger = controller.get_axis(5)
 
 
         #applies controller deadzone
@@ -77,20 +77,20 @@ def main():
         else:
             ly = 0
         
-        if rightStickX >= 5 or rightStickX <= -5:
-            rx = rightStickX
+        if leftTrigger >= 5:
+            lt = leftTrigger
         else:
-            rx = 0
+            lt = 0
 
-        if rightStickY >= 5 or rightStickY <= -5:
-            ry = rightStickY
+        if rightTrigger >= 5:
+            rt = rightTrigger
         else:
-            ry = 0
+            rt = 0
 
-        print(lx, ly, rx, ry)
+        print(lx, ly, lt, rt)
 
 
-        if ly >= 0 or rx == 0:
+        if ly >= 0:
             goFoward()
             p1.ChangeDutyCycle(ly)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(ly)#Set the P2 pulse signal duty cycle to y joystick% 
@@ -100,15 +100,20 @@ def main():
             p1.ChangeDutyCycle(-ly)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(-ly)#Set the P2 pulse signal duty cycle to y joystick% 
 
-        if rx > 0:
-            rotateRight()
-            p1.ChangeDutyCycle(rx)
-            p2.ChangeDutyCycle(rx)
-        elif rx < 0:
+        
+        if lt > 0:
             rotateLeft()
-            p1.ChangeDutyCycle(-rx)
-            p2.ChangeDutyCycle(-rx)
+            p1.ChangeDutyCycle(lt)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(lt)#Set the P2 pulse signal duty cycle to y joystick%
+        
+        elif rt > 0:
+            rotateRight()
+            p1.ChangeDutyCycle(rt)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(rt)#Set the P2 pulse signal duty cycle to y joystick%
 
+        
+
+        
 
 
 
