@@ -119,15 +119,15 @@ def main():
             p1.ChangeDutyCycle(-finalPowerLeft)#Set the P1 pulse signal duty cycle to the value of y joystick%
             p2.ChangeDutyCycle(-finalPowerRight)#Set the P2 pulse signal duty cycle to y joystick% 
 
-        elif ly == 0 and rx <= 0:
-            rotateLeft()
-            p1.ChangeDutyCycle(-rx)
-            p2.ChangeDutyCycle(-rx)
+#        elif ly == 0 and rx <= 0:
+#            rotateLeft()
+#            p1.ChangeDutyCycle(-rx)
+#            p2.ChangeDutyCycle(-rx)
             
-        elif ly == 0 and rx > 0:
-            rotateRight()
-            p1.ChangeDutyCycle(rx)
-            p2.ChangeDutyCycle(rx)
+#        elif ly == 0 and rx > 0:
+#            rotateRight()
+#            p1.ChangeDutyCycle(rx)
+#            p2.ChangeDutyCycle(rx)
 
 
 
