@@ -102,7 +102,7 @@ def main():
         else:
             finalPowerRight = 0
 
-        print(ly, rx, finalPowerLeft, finalPowerRight, end="\r")
+        print(ly, rx, finalPowerLeft, finalPowerRight)
 
 
         if ly >= 0:
