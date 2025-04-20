@@ -19,6 +19,8 @@ def getLeftAxes():
         #get left joystick raw x and y values
         controllerX = controller.get_axis(1) * -100  # gets left joystick x-axis
         controllerY = controller.get_axis(0) * 100  # gets left joystick y-axis
+        controllerLT = controller.get_axis(2) * 100
+        controllerRT = controller.get_axis(5) * 100
 
         #applies controller deadzone
         if controllerX >= 5 or controllerX <= -5:
@@ -30,6 +32,12 @@ def getLeftAxes():
             y = controllerY
         else:
             y = 0
+
+        if controllerLT >= 5:
+            lt = controllerLT
+
+        else:
+            lt = controllerLT - controllerLT
         
         print(x, y)
 

@@ -62,8 +62,8 @@ def main():
         #get left joystick raw x and y values and trigger values
         leftstickX = controller.get_axis(0) * 100  # gets left joystick x-axis
         leftstickY = controller.get_axis(1) * -100  # gets left joystick y-axis
-        leftTrigger = controller.get_axis(2)
-        rightTrigger = controller.get_axis(5)
+        leftTrigger = controller.get_axis(2) * 100
+        rightTrigger = controller.get_axis(5) * 100
 
 
         #applies controller deadzone
@@ -80,14 +80,14 @@ def main():
         if leftTrigger >= 5:
             lt = leftTrigger
         else:
-            lt = 0
-
+            lt = leftTrigger - leftTrigger
+        
         if rightTrigger >= 5:
             rt = rightTrigger
         else:
-            rt = 0
+            rt = rightTrigger - rightTrigger
 
-        print(lx, ly, lt, rt)
+        print(ly, lt, rt, end='\r')
 
 
         if ly >= 0:
