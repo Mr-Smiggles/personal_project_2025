@@ -87,18 +87,39 @@ def main():
         else:
             ry = 0
 
+        
+        # create combined values
+        finalPowerLeft = ly + rx
+        finalPowerRight = ly - rx
+
+        if finalPowerLeft >= 0:
+            finalPowerLeft = finalPowerLeft
+        else:
+            finalPowerLeft = 0
+
+        if finalPowerRight >= 0:
+            finalPowerRight = finalPowerRight
+        else:
+            finalPowerRight = 0
+
         print(ly, rx, end='\r')
 
 
         if ly >= 0:
             goFoward()
-            p1.ChangeDutyCycle(ly + rx)#Set the P1 pulse signal duty cycle to the value of y joystick%
-            p2.ChangeDutyCycle(ly + rx)#Set the P2 pulse signal duty cycle to y joystick% 
+
+            if rx > 0:
+                rx = rx
+            else:
+                rx = 0
+
+            p1.ChangeDutyCycle(finalPowerLeft)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(finalPowerRight)#Set the P2 pulse signal duty cycle to y joystick% 
         
-        elif ly < 0:
-            goBackward()
-            p1.ChangeDutyCycle(-ly - rx)#Set the P1 pulse signal duty cycle to the value of y joystick%
-            p2.ChangeDutyCycle(-ly - rx)#Set the P2 pulse signal duty cycle to y joystick% 
+        # elif ly < 0:
+        #     goBackward()
+        #     p1.ChangeDutyCycle(-ly + rx)#Set the P1 pulse signal duty cycle to the value of y joystick%
+        #     p2.ChangeDutyCycle(-ly - rx)#Set the P2 pulse signal duty cycle to y joystick% 
 
         
         # if rx > 0:
