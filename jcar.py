@@ -94,11 +94,15 @@ def main():
 
         if combinedPowerLeft >= 0:
             finalPowerLeft = combinedPowerLeft
+        elif combinedPowerLeft > 100:
+            finalPowerLeft = 100
         else:
             finalPowerLeft = 0
 
         if combinedPowerRight >= 0:
             finalPowerRight = combinedPowerRight
+        elif combinedPowerRight > 100:
+            finalPowerRight = 100
         else:
             finalPowerRight = 0
 
