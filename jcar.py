@@ -89,20 +89,20 @@ def main():
 
         
         # create combined values
-        finalPowerLeft = ly + rx
-        finalPowerRight = ly - rx
+        combinedPowerLeft = ly + rx
+        combinedPowerRight = ly - rx
 
-        if finalPowerLeft >= 0:
-            finalPowerLeft = finalPowerLeft
+        if combinedPowerLeft >= 0:
+            finalPowerLeft = combinedPowerLeft
         else:
             finalPowerLeft = 0
 
-        if finalPowerRight >= 0:
-            finalPowerRight = finalPowerRight
+        if combinedPowerRight >= 0:
+            finalPowerRight = combinedPowerRight
         else:
             finalPowerRight = 0
 
-        print(ly, rx, end='\r')
+        print(ly, rx, finalPowerLeft, finalPowerRight, end="\r")
 
 
         if ly >= 0:
