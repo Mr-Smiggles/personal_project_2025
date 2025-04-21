@@ -91,29 +91,32 @@ def main():
         # create combined values
         combinedPowerLeft = ly + rx
         combinedPowerRight = ly - rx
+    
 
-        if goFoward:
-            if combinedPowerLeft >= 0.0 and combinedPowerLeft <= 100.0:
-                finalPowerLeft = combinedPowerLeft
-            elif combinedPowerLeft >= 100.0:
-                finalPowerLeft = 100.0
-            else:
-                finalPowerLeft = 0.0
+        if combinedPowerLeft >= 0.0 and combinedPowerLeft <= 100.0:
+            finalPowerLeft = combinedPowerLeft
+        elif combinedPowerLeft >= 100.0:
+            finalPowerLeft = 100.0
+        elif combinedPowerLeft < 0.0 and combinedPowerLeft >= -100.0:
+            finalPowerLeft = -combinedPowerLeft
+        elif combinedPowerLeft < -100.0:
+            finalPowerLeft = 100.0
+        else:
+            finalPowerLeft = 0.0
 
-            if combinedPowerRight >= 0.0 and combinedPowerRight <= 100.0:
-                finalPowerRight = combinedPowerRight
-            elif combinedPowerRight >= 100.0:
-                finalPowerRight = 100.0
-            else:
-                finalPowerRight = 0.0
 
-        elif goBackward:
-            if combinedPowerLeft <= 0.0 and combinedPowerLeft >= -100.0:
-                finalPowerLeft = combinedPowerLeft * -1.0
-            elif combinedPowerLeft <= -100.0:
-                finalPowerLeft = -100.0 * -1.0
-            else:
-                finalPowerLeft = 0.0
+        if combinedPowerRight >= 0.0 and combinedPowerRight <= 100.0:
+            finalPowerRight = combinedPowerRight
+        elif combinedPowerRight >= 100.0:
+            finalPowerRight = 100.0
+        elif combinedPowerRight < 0.0 and combinedPowerRight >= -100.0:
+            finalPowerRight = -combinedPowerRight
+        elif combinedPowerRight < -100.0:
+            finalPowerRight = 100.0
+        else:
+            finalPowerRight = 0.0
+
+        
 
         print(ly, rx, finalPowerLeft, finalPowerRight)
 
