@@ -92,19 +92,28 @@ def main():
         combinedPowerLeft = ly + rx
         combinedPowerRight = ly - rx
 
-        if combinedPowerLeft >= 0.0 and combinedPowerLeft <= 100.0:
-            finalPowerLeft = combinedPowerLeft
-        elif combinedPowerLeft >= 100.0:
-            finalPowerLeft = 100.0
-        else:
-            finalPowerLeft = 0.0
+        if goFoward:
+            if combinedPowerLeft >= 0.0 and combinedPowerLeft <= 100.0:
+                finalPowerLeft = combinedPowerLeft
+            elif combinedPowerLeft >= 100.0:
+                finalPowerLeft = 100.0
+            else:
+                finalPowerLeft = 0.0
 
-        if combinedPowerRight >= 0.0 and combinedPowerRight <= 100.0:
-            finalPowerRight = combinedPowerRight
-        elif combinedPowerRight >= 100.0:
-            finalPowerRight = 100.0
-        else:
-            finalPowerRight = 0.0
+            if combinedPowerRight >= 0.0 and combinedPowerRight <= 100.0:
+                finalPowerRight = combinedPowerRight
+            elif combinedPowerRight >= 100.0:
+                finalPowerRight = 100.0
+            else:
+                finalPowerRight = 0.0
+
+        elif goBackward:
+            if combinedPowerLeft <= 0.0 and combinedPowerLeft >= -100.0:
+                finalPowerLeft = combinedPowerLeft * -1.0
+            elif combinedPowerLeft <= -100.0:
+                finalPowerLeft = -100.0 * -1.0
+            else:
+                finalPowerLeft = 0.0
 
         print(ly, rx, finalPowerLeft, finalPowerRight)
 
@@ -116,18 +125,18 @@ def main():
         
         elif ly < 0:
             goBackward()
-            p1.ChangeDutyCycle(-finalPowerLeft)#Set the P1 pulse signal duty cycle to the value of y joystick%
-            p2.ChangeDutyCycle(-finalPowerRight)#Set the P2 pulse signal duty cycle to y joystick% 
+            p1.ChangeDutyCycle(finalPowerLeft)#Set the P1 pulse signal duty cycle to the value of y joystick%
+            p2.ChangeDutyCycle(finalPowerRight)#Set the P2 pulse signal duty cycle to y joystick% 
 
-#        elif ly == 0 and rx <= 0:
-#            rotateLeft()
-#            p1.ChangeDutyCycle(-rx)
-#            p2.ChangeDutyCycle(-rx)
+        # elif ly == 0 and rx <= 0:
+        #     rotateLeft()
+        #     p1.ChangeDutyCycle(-rx)
+        #     p2.ChangeDutyCycle(-rx)
             
-#        elif ly == 0 and rx > 0:
-#            rotateRight()
-#            p1.ChangeDutyCycle(rx)
-#            p2.ChangeDutyCycle(rx)
+        # elif ly == 0 and rx > 0:
+        #     rotateRight()
+        #     p1.ChangeDutyCycle(rx)
+        #     p2.ChangeDutyCycle(rx)
 
 
 
