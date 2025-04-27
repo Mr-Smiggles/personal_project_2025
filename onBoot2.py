@@ -16,6 +16,7 @@ def restartJCar():
 
     if doNotRestart == False:
         if 'jcar.py' not in output:
+            global jcar_process
             jcar_process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
 
         #os.system('python /home/jason/personal_project_2025/jcar.py')
