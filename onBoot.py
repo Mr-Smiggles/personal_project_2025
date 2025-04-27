@@ -3,9 +3,9 @@ from time import sleep
 from gpiozero import Button
 
 
-redButton = Button(40)
-yellowButton = Button(38)
-greenButton = Button(36)
+redButton = Button(21)
+yellowButton = Button(20)
+greenButton = Button(16)
 
 os.system('python /home/jason/personal_project_2025/jcar.py')
 
