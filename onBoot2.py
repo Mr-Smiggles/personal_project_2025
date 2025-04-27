@@ -3,6 +3,7 @@ from time import sleep
 from gpiozero import Button
 import subprocess
 
+jcar_process = None
 doNotRestart = False
 redButton = Button(21)
 yellowButton = Button(20)
