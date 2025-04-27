@@ -28,14 +28,12 @@ def yellowButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Yellow button pressed")
-    subprocess.run(['pkill', '-f', 'onBoot2.py'])
     subprocess.run(['pkill', '-f', 'jcar.py'])
 
 def greenButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Green button pressed")
-    subprocess.run(['pkill', '-f', 'onBoot2.py'])
     subprocess.run(['pkill', '-f', 'jcar.py'])
     sleep(5)
     doNotRestart = False
