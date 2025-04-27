@@ -12,8 +12,11 @@ greenButton = Button(18)
 def restartJCar():
     global doNotRestart
     output = os.popen('ps -aux | grep python').read()
-    if 'jcar.py' not in output and doNotRestart == False:
-        process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
+
+
+    if doNotRestart == False:
+        if 'jcar.py' not in output:
+            process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
 
         #os.system('python /home/jason/personal_project_2025/jcar.py')
 
