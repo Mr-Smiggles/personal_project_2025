@@ -45,5 +45,5 @@ greenButton.when_pressed = greenButtonPressed
 
 while True:
     restartJCar()
-    print("doNotRestart")
+    print(doNotRestart)
     sleep(1)
