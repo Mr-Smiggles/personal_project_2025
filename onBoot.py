@@ -26,6 +26,8 @@ def buttonPressed():
         os.system('pkill -f jcar.py')
         sleep(5)
         doNotRestart = False
+    else:
+        pass
  
 
 while True:
