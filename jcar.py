@@ -119,7 +119,7 @@ def main():
 
         
 
-        print(ly, rx, finalPowerLeft, finalPowerRight)
+        #print(ly, rx, finalPowerLeft, finalPowerRight)
 
 
         if ly >= 0:
