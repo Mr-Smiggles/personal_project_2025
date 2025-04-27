@@ -3,7 +3,7 @@ from gpiozero import Button
 
 redButton = Button(21)
 yellowButton = Button(20)
-greenButton = Button(12)
+greenButton = Button(18)
 
 
 while True:
