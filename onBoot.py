@@ -33,6 +33,7 @@ def buttonPressed():
  
 
 while True:
+    print("doNotRestart")
     restartJCar()
     buttonPressed()
 
