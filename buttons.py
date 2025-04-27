@@ -26,10 +26,9 @@ def greenButtonPressed():
     sleep(5)
     os.system('python /home/jason/personal_project_2025/onBoot.py')
  
-def buttonPressed():
-    redButton.when_pressed = redButtonPressed
-    yellowButton.when_pressed = yellowButtonPressed
-    greenButton.when_pressed = greenButtonPressed
+
 
 while True:
-    buttonPressed()
+    redButton.when_pressed = redButtonPressed
+    yellowButton.when_pressed = yellowButtonPressed
+    greenButton.when_pressed = greenButtonPressed    
