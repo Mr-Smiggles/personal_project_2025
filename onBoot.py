@@ -19,7 +19,7 @@ def gpioCleanup():
         clean = True
 
 while True:
-    print(clean)
+    print(clean, end='\r')
     gpioCleanup()
     if clean:
         redButton = Button(21)
