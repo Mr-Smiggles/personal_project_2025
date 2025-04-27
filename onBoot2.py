@@ -12,14 +12,15 @@ greenButton = Button(18)
 
 def restartJCar():
     global doNotRestart
-    output = os.popen('ps -aux | grep python').read()
+    global jcar_process
 
 
-    if doNotRestart == False:
+    if not doNotRestart:
+        output = os.popen('ps -aux | grep python').read()
+
         if 'jcar.py' not in output:
-            global jcar_process
-            jcar_process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
-
+            if jcar_process is None or not None:
+                jcar_process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
         #os.system('python /home/jason/personal_project_2025/jcar.py')
 
 def redButtonPressed():
