@@ -20,20 +20,23 @@ def redButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Red button pressed")
-    os.system('pkill -f jcar.py')
-    os.system('sudo shutdown now')
+    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'jcar.py'])
+    subprocess.run(['sudo', 'shutdown', 'now'])
 
 def yellowButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Yellow button pressed")
-    os.system('pkill -f jcar.py')
+    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'jcar.py'])
 
 def greenButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Green button pressed")
-    os.system('pkill -f jcar.py')
+    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'jcar.py'])
     sleep(5)
     doNotRestart = False
  
@@ -43,3 +46,4 @@ greenButton.when_pressed = greenButtonPressed
 
 while True:
     restartJCar()
+    sleep(1)
