@@ -1,34 +1,19 @@
 import os
-import RPi.GPIO as GPIO
 from time import sleep
 from gpiozero import Button
 
-clean = False
 redButton = Button(21)
 yellowButton = Button(20)
 greenButton = Button(16)
 
 os.system('python /home/jason/personal_project_2025/jcar.py')
 
-def gpioCleanup():
+def restartJCar():
     output = os.popen('ps -aux | grep python').read()
-    if 'jcar.py' in output:
-        print("jcar.py is running", end='\r')
-    else:
-        GPIO.cleanup()
-        clean = True
+    if 'jcar.py' not in output:
+        os.system('python /home/jason/personal_project_2025/jcar.py')
 
-while True:
-    print(clean, end='\r')
-    gpioCleanup()
-    if clean:
-        redButton = Button(21)
-        yellowButton = Button(20)
-        greenButton = Button(16)
-        clean = False
-    else:
-        continue
-
+def buttonPressed():
     if redButton.is_pressed:
         os.system('pkill -f jcar.py')
         os.system('sudo shutdown now')
@@ -38,5 +23,9 @@ while True:
         os.system('pkill -f jcar.py')
         sleep(1)
         os.system('python /home/jason/personal_project_2025/jcar.py')
-    else:
-        print("Button is not pressed")
+ 
+
+while True:
+    restartJCar()
+    buttonPressed()
+

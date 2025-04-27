@@ -3,7 +3,6 @@ import RPi.GPIO as GPIO
 import pygame
 import os
 from time import sleep
-running = True
 pygame.init()
 x = 70
 y = 70
@@ -192,7 +191,7 @@ p2.start(30)#P2 defaults to a duty cycle of 30%
 
 
 #create code loop
-while running:
+while True:
     try:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -202,6 +201,5 @@ while running:
     except:
         print("oops")
         GPIO.cleanup()
-        sleep(5)
-        os.system('python /home/jason/personal_project_2025/jcar.py')
+        sleep(1)
         sys.exit()
