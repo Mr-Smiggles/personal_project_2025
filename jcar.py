@@ -202,6 +202,6 @@ while running:
     except:
         print("oops")
         GPIO.cleanup()
-        sleep(.5)
+        sleep(5)
         os.system('python /home/jason/personal_project_2025/jcar.py')
         sys.exit()
