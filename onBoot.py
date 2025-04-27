@@ -12,9 +12,10 @@ def restartJCar():
     output = os.popen('ps -aux | grep python').read()
     if 'jcar.py' not in output and doNotRestart == False:
         os.system('python /home/jason/personal_project_2025/jcar.py')
+ 
 
-def buttonPressed():
-    global doNotRestart 
+while True:
+    restartJCar()
     
     if redButton.is_pressed:
         doNotRestart = True
@@ -30,10 +31,3 @@ def buttonPressed():
         doNotRestart = False
     else:
         pass
- 
-
-while True:
-    print("doNotRestart")
-    restartJCar()
-    buttonPressed()
-
