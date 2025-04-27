@@ -5,16 +5,13 @@ redButton = Button(21)
 yellowButton = Button(20)
 greenButton = Button(16)
 
-def n():
-    n += 1
-    return n
 
 while True:
     if redButton.is_pressed:
-        print("Red button pressed", n())
+        print("Red button pressed")
     if yellowButton.is_pressed:
-        print("Yellow button pressed", n())
+        print("Yellow button pressed")
     if greenButton.is_pressed:
-        print("Green button pressed", n())
+        print("Green button pressed")
     else:
         pass
