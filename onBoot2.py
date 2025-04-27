@@ -29,11 +29,13 @@ def redButtonPressed():
     subprocess.run(['sudo', 'shutdown', 'now'])
 
 def yellowButtonPressed():
-    global doNotRestart
+    global doNotRestart, jcar_process
     doNotRestart = True
     print("Yellow button pressed")
-    subprocess.run(['pkill', '-f', 'python3 /home/jason/personal_project_2025/jcar.py'])
-
+    if jcar_process:
+        jcar_process.terminate()
+        jcar_process = None
+        
 def greenButtonPressed():
     global doNotRestart
     doNotRestart = True
