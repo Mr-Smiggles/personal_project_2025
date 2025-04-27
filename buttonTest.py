@@ -1,6 +1,13 @@
 from gpiozero import Button
 
-button = Button(2)
+redButton = Button(40)
+yellowButton = Button(38)
+greenButton = Button(36)
 
-button.wait_for_press()
-print("Button pressed")
+while True:
+    if redButton.is_pressed:
+        print("Red button pressed")
+    if yellowButton.is_pressed:
+        print("Yellow button pressed")
+    if greenButton.is_pressed:
+        print("Green button pressed")
