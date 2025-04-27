@@ -9,10 +9,10 @@ greenButton = Button(16)
 
 while True:
     if redButton.is_pressed:
-        print("Red button pressed", i+1)
+        print("Red button pressed", i = i+1)
     if yellowButton.is_pressed:
-        print("Yellow button pressed", i+1)
+        print("Yellow button pressed", i = i+1)
     if greenButton.is_pressed:
-        print("Green button pressed", i+1)
+        print("Green button pressed", i = i+1)
     else:
         pass
