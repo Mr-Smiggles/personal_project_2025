@@ -20,7 +20,7 @@ def redButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Red button pressed")
-    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'onBoot2.py'])
     subprocess.run(['pkill', '-f', 'jcar.py'])
     subprocess.run(['sudo', 'shutdown', 'now'])
 
@@ -28,14 +28,14 @@ def yellowButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Yellow button pressed")
-    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'onBoot2.py'])
     subprocess.run(['pkill', '-f', 'jcar.py'])
 
 def greenButtonPressed():
     global doNotRestart
     doNotRestart = True
     print("Green button pressed")
-    subprocess.run(['pkill', '-f', 'onBoot.py'])
+    subprocess.run(['pkill', '-f', 'onBoot2.py'])
     subprocess.run(['pkill', '-f', 'jcar.py'])
     sleep(5)
     doNotRestart = False
