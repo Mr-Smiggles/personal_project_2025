@@ -1,6 +1,7 @@
 from gpiozero import Button
 from time import sleep
 import os
+import subprocess
 
 
 redButton = Button(21)
