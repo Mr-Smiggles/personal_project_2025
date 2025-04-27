@@ -15,7 +15,7 @@ while True:
         print("Red button pressed")
         os.system('sudo shutdown now')
     if yellowButton.is_pressed:
-        os.system('pkill -f jcar.py')
+        os.system('sudo pkill -f jcar.py')
         print("Yellow button pressed")
     if greenButton.is_pressed:
         os.system('pkill -f jcar.py')
