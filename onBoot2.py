@@ -16,7 +16,7 @@ def restartJCar():
 
     if doNotRestart == False:
         if 'jcar.py' not in output:
-            process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
+            jcar_process = subprocess.Popen(['python', '/home/jason/personal_project_2025/jcar.py'], start_new_session=True)
 
         #os.system('python /home/jason/personal_project_2025/jcar.py')
 
@@ -35,7 +35,7 @@ def yellowButtonPressed():
     if jcar_process:
         jcar_process.terminate()
         jcar_process = None
-        
+
 def greenButtonPressed():
     global doNotRestart
     doNotRestart = True
