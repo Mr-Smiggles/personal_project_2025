@@ -14,6 +14,8 @@ def restartJCar():
         os.system('python /home/jason/personal_project_2025/jcar.py')
 
 def buttonPressed():
+    global doNotRestart 
+    
     if redButton.is_pressed:
         doNotRestart = True
         os.system('pkill -f jcar.py')
