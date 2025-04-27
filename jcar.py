@@ -147,6 +147,7 @@ def main():
 #some of the following code is taken from https://github.com/Cokoino/CKK0018/blob/main/Tutorial/Code/Drive_4_motors_run.py
 
 #define the pin for drv8833#1
+GPIO.setwarnings(False)
 NSLEEP1 = 12  #Enabling signal pin for drv8833
 AN11 = 17
 AN12 = 27
