@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import pygame
 import os
 from time import sleep
+from gpiozero import Button
+
 pygame.init()
 x = 70
 y = 70
@@ -16,6 +18,31 @@ for event in pygame.event.get():
         controller.init()  # Initialize the joystick
     elif event.type == pygame.QUIT:
         running = False
+
+# buttons
+redButton = Button(21)
+def redButtonPressed():
+    os.system('sudo shutdown now')
+redButton.when_pressed = redButtonPressed
+
+yellowButton = Button(20)
+def yellowButtonPressed():
+    GPIO.cleanup()
+    sleep(1)
+    sys.exit()
+yellowButton.when_pressed = yellowButtonPressed
+
+# greenButton = Button(18)
+# def greenButtonPressed():
+#     restart = open('restart.txt', 'w')
+#     restart.write('1')
+#     restart.close()
+#     GPIO.cleanup()
+#     sleep(1)
+#     sys.exit()
+# greenButton.when_pressed = greenButtonPressed
+
+
 
 def goFoward():
     GPIO.output(AN11,GPIO.LOW)
