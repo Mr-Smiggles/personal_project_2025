@@ -24,6 +24,7 @@ redButton = Button(21)
 def redButtonPressed():
     os.system('sudo shutdown now')
     GPIO.cleanup()
+    os.system('sudo pkill -9 python')
     sleep(1)
 redButton.when_pressed = redButtonPressed
 
