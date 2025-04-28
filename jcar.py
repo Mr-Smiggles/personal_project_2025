@@ -23,6 +23,8 @@ for event in pygame.event.get():
 redButton = Button(21)
 def redButtonPressed():
     os.system('sudo shutdown now')
+    GPIO.cleanup()
+    sleep(1)
 redButton.when_pressed = redButtonPressed
 
 yellowButton = Button(20)
